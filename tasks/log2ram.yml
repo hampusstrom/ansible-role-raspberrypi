@@ -1,0 +1,40 @@
+---
+- name: Install rsync.
+  ansible.builtin.apt:
+    pkg:
+      - rsync
+    update_cache: true
+  when: rpi_log2ram_use_rsync
+
+- name: Install log2ram gpg key.
+  ansible.builtin.apt_key:
+    url: "{{ rpi_log2ram_gpg_url }}"
+    keyring: "{{ rpi_log2ram_gpg_path }}"
+    state: present
+
+- name: Add log2ram apt repository.
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by={{ rpi_log2ram_gpg_path }}] {{ rpi_log2ram_gpg_url }}/{{ ansible_distribution | lower }}/ {{ ansible_distribution_release | lower }} main"
+    state: present
+
+- name: Install log2ram.
+  ansible.builtin.apt:
+    pkg:
+      - log2ram
+    update_cache: true
+  notify: reboot host
+
+- name: Set log2ram.conf.
+  ansible.builtin.template:
+    src: files/log2ram.conf.j2
+    dest: /etc/log2ram.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart log2ram
+
+- name: Ensure log2ram is enabled and running.
+  ansible.builtin.systemd:
+    name: log2ram
+    state: started
+    enabled: true

@@ -1,0 +1,11 @@
+---
+# defaults file for hampusstrom.raspberrypi
+rpi_disable_bluetooth: true
+rpi_log2ram_enabled: true
+rpi_log2ram_size: 40M
+rpi_log2ram_mail: true
+rpi_log2ram_path_disk: /var/log
+rpi_log2ram_zl2r: false
+rpi_log2ram_comp_alg: lz4
+rpi_log2ram_disk_size: 100M
+rpi_log2ram_use_rsync: true

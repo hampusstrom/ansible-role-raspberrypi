@@ -1,0 +1,19 @@
+---
+- name: Disable bluetooth in kernel boot options.
+  ansible.builtin.lineinfile:
+    dest: /boot/config.txt
+    regexp: '^dtoverlay=disable-bt$'
+    line: 'dtoverlay=disable-bt'
+  notify: reboot host
+
+- name: Ensure hciuart is disabled and stopped.
+  ansible.builtin.systemd:
+    name: hciuart
+    state: stopped
+    enabled: false
+
+- name: Ensure bluetooth is disabled and stopped.
+  ansible.builtin.systemd:
+    name: bluetooth
+    state: stopped
+    enabled: false

@@ -1,0 +1,12 @@
+---
+# tasks file for hampusstrom.raspberrypi
+
+- name: Install Log2RAM.
+  ansible.builtin.include_tasks:
+    - log2ram.yml
+  when: rpi_log2ram_enabled
+
+- name: Disable bluetooth.
+  ansible.builtin.include_tasks:
+    - disable-bluetooth.yml
+  when: rpi_disable_bluetooth
