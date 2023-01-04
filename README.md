@@ -4,7 +4,6 @@ Role Name
 This role configures raspberry pi devices after my own needs.
 
 * Disables bluetooth to reduce bluetooth interference in my home. (I don't use the bluetooth on RPI)
-* Disables wifi to reduce interference in my home. (I don't use wifi on the RPI)
 * Installs and configures log2ram, as to not wear out my SD Card.
 
 Requirements
