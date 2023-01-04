@@ -1,4 +1,4 @@
-Role Name
+ansible-role-raspberrypi
 =========
 
 This role configures raspberry pi devices after my own needs.
