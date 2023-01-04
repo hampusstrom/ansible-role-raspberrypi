@@ -1,4 +1,5 @@
 ---
 # vars file for hampusstrom.raspberrypi
+rpi_log2ram_repo_url: http://packages.azlux.fr
 rpi_log2ram_gpg_url: https://azlux.fr/repo.gpg
 rpi_log2ram_gpg_path: /etc/apt/trusted.gpg.d/azlux-archive-keyring.gpg

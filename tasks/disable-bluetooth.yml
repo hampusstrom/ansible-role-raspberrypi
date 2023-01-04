@@ -1,10 +1,16 @@
 ---
+- name: Check if /boot/config.txt exists.
+  ansible.builtin.stat:
+    path: /boot/config.txt
+  register: __rpi_boot_config
+
 - name: Disable bluetooth in kernel boot options.
   ansible.builtin.lineinfile:
     dest: /boot/config.txt
     regexp: '^dtoverlay=disable-bt$'
     line: 'dtoverlay=disable-bt'
   notify: reboot host
+  when: __rpi_boot_config.stat.exists
 
 - name: Ensure hciuart is disabled and stopped.
   ansible.builtin.systemd:

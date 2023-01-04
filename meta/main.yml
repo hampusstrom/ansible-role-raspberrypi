@@ -1,4 +1,6 @@
 galaxy_info:
+  role_name: raspberrypi
+  namespace: hampusstrom
   author: Hampus Ström
   description: A role to configure raspberrypi devices to my needs.
   company: Hampus Ström
